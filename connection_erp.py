@@ -24,7 +24,7 @@ def to_utf8(f):
     return converter
 
 #Depending on the date format, it returns the Day
-def return_day (date):
+def return_day(date):
     date_str=str (date)
     if date_str.find('.')>=0:
         #logger.error("{0}".format("."))
@@ -36,16 +36,15 @@ def return_day (date):
         day = days[1]
     return int(day)
 
-
 @to_utf8
-def create_new_db(server, password, name, demo = False, user_password='admin', lang='de_DE'):
+def create_new_db(server, password, name, demo = False, user_password='admin', lang='de_DE', country_code=None):
     connection = erppeek.Client(server)
     if demo == "True" or demo == "u'True" or demo==True:
         demo = True
     else:
         demo = False
 
-    db = connection.create_database (password, name, demo, lang, user_password=user_password)
+    db = connection.create_database(password, name, demo, lang, user_password=user_password, country_code=country_code)
     if db == 1:
         return True
     return False
